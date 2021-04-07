@@ -11,28 +11,53 @@ namespace Assets.Scripts.Player
         private int playerStateStackIndex = -1;
 
         #region Properties
-        public LayerMask groundedLayerMask;
-        public float raycastOffset = -0.4f;
-        public float raycastingThreshold = 0.2f;
+        //
+        // Ground detection
+        //
+        [BoxGroup("Ground detection")] public LayerMask groundedLayerMask;
 
+        [BoxGroup("Ground detection")]
+        [Tooltip("Offset for the ground spherecast. Will need tweaking based on player collider")] public float sphereCastOffset = -0.4f;
+
+        [BoxGroup("Ground detection")]
+        [Tooltip("Size of ground spherecast. Will need tweaking based on player collider")] public float sphereCastSize = 0.2f;
+
+        //
+        // Movement properties
+        //
         [BoxGroup("Movement properties")]
         [Tooltip("Applied when player isn't grounded")] public float gravity = 20f;
+
+        [BoxGroup("Movement properties")]
         [Tooltip("Max gravity")] public float terminalVelocity = 50.0f;
+
+        [BoxGroup("Movement properties")]
         [Tooltip("Controls how slippery the player is")] public float frictionConstant = 4f;
+
+        [BoxGroup("Movement properties")]
         [Tooltip("Vertical velocity applied on jump")] public float jumpForce = 6.5f;
-        public float mouseSensitivity = 5f;
+
+        [BoxGroup("Movement properties")] public float mouseSensitivity = 5f;
+
+        [BoxGroup("Movement properties")]
         [Tooltip("Max strafe angle. Use 180 for Quake classic-like bhops")] public float maxAngle = 180f;
 
-        [BoxGroup("Air movement")]
-        public float maxVelocityAir = 5f;
-        public float airAccelerate = 15f;
+        //
+        // Air movement
+        //
+        [BoxGroup("Air movement")] public float maxVelocityAir = 5f;
+        [BoxGroup("Air movement")] public float airAccelerate = 15f;
 
-        [BoxGroup("Ground movement")]
-        public float maxVelocityGround = 80f;
-        public float groundAccelerate = 40f;
+        //
+        // Ground movement
+        //
+        [BoxGroup("Ground movement")] public float maxVelocityGround = 80f;
+        [BoxGroup("Ground movement")] public float groundAccelerate = 40f;
 
-        [BoxGroup("Player animation")]
-        public Animator playerAnimator;
+        //
+        // Animation
+        //
+        [BoxGroup("Player animation")] public Animator playerAnimator;
         #endregion
 
         [HideInInspector] public new Transform transform;
