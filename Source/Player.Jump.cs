@@ -1,20 +1,19 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Player
 {
-    public class PlayerJumpModule : BasePlayerModule
+    public partial class Player
     {
         private bool canJump = true;
         private float jumpTimeThreshold = 0.03f; // In seconds
         private float timeSinceLastJump = 0;
 
-        public override void FixedUpdate(PlayerController parent, float deltaTime)
+        public void ApplyJump()
         {
             // Jump timer logic
             if (!canJump)
             {
-                timeSinceLastJump += deltaTime;
+                timeSinceLastJump += Time.deltaTime;
                 if (timeSinceLastJump > jumpTimeThreshold)
                 {
                     canJump = true;
@@ -23,12 +22,12 @@ namespace Assets.Scripts.Player
             }
 
             // Jump check logic
-            if (parent.GetPlayerModule<PlayerGroundedModule>().Grounded && GetJump() && canJump)
+            if (Grounded && GetJump() && canJump)
             {
                 Debug.Log("Jump");
-                var vel = parent.rigidbody.velocity;
-                vel.y += parent.jumpForce;
-                parent.rigidbody.velocity = vel;
+                var vel = rigidbody.velocity;
+                vel.y += jumpForce;
+                rigidbody.velocity = vel;
 
                 canJump = false;
             }

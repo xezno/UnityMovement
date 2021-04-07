@@ -2,16 +2,16 @@
 
 namespace Assets.Scripts.Player
 {
-    public class PlayerFrictionModule : BasePlayerModule
+    public partial class Player
     {
-        public override void FixedUpdate(PlayerController parent, float deltaTime)
+        public void ApplyFriction()
         {
-            if (parent.GetPlayerModule<PlayerGroundedModule>().Grounded)
+            if (Grounded)
             {
-                var vel = parent.rigidbody.velocity;
-                vel = CalcFriction(vel, parent.frictionConstant);
+                var vel = rigidbody.velocity;
+                vel = CalcFriction(vel, frictionConstant);
 
-                parent.rigidbody.velocity = vel;
+                rigidbody.velocity = vel;
             }
         }
 

@@ -1,8 +1,8 @@
 ﻿namespace Assets.Scripts.Player.States
 {
-    public class WalkingState : BaseMovementState
+    public class SprintingState : BaseMovementState
     {
-        public WalkingState(Player parent)
+        public SprintingState(Player parent)
             : base(parent.groundAccelerate, parent.maxVelocityGround) { }
     }
 }
